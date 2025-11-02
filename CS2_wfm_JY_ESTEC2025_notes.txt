@@ -1,0 +1,42 @@
+Steps to generate CS2 waveform plots for thin vs thick snow study (for JY - ESTEC presentation on June 30, 2025)
+Created on June 20, 2025
+
+1. Search for and download CS2 tracks over ROIs on cs2eo.org 
+--- Spatial subset is not possible on the website, the whole tracks have to be downloaded.
+
+2. Subsetting the section of the tracks over the ROIs (see JY's ppt: test site for Ming)
+--- For each of the thin and thick snow cases, two tracks were identified and spatially subsetted.
+--- Thin snow: 2024-04-11 and 2024-05-22
+--- Thick snow 2024-04-06 and 2024-05-19
+--- Subsetting was done by python and lat/lon limits of the ROIs (nc_subset.ipynb)
+
+3. Identifying spatial crossovers for thin/thick snow case
+--- the subsetted tracks are netcdf files
+--- pyhton script first reads the lat/lon of the measurement points along the two tracks in each case
+--- round off to 1 decimal place, the closest lat/lon pairs are found
+--- the corresponding time of measurement (time_20_ku) are found and the waveforms at these measurement time (and thus lat/lon)
+
+4. Plotting waveforms
+--- Waveforms are plotted by the variable "pwr_waveform_20_ku" against the dimension "ns_20_ku", which is the bin number
+--- Units are counts scaled to fit in the range 0-65535
+--- i.e. the plot shows the tail shape of the waveform, and the vertical scale of each plot is scaled
+
+Results (see pdf)
+- For each thin/thick snow case:
+-- Left column (blue curves) is the earlier date
+-- Right column (green curves) is the later date
+-- **Pairs near the middle rows are spatially the nearest**
+
+- thin snow case
+-- waveform on the earlier date is generally sharper than the later date
+-- on the later date, the tails of the waveforms are wider
+-- this could be the influence of wetness in snow on the later date (late May)
+
+- thick case
+-- the waveforms and the tails on both dates are similar in shape
+
+
+************************
+
+SAR processing for visualization
+Created on June 25, 2025
